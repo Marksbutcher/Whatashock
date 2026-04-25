@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yes. We noticed. — The wind drops. The sun sets. Engineers worked this out.</title>
+<title>Yes, we noticed. The wind drops. The sun sets. Engineers worked this out.</title>
 <meta name="description" content="A live answer to the most tired argument in energy policy. The wind sometimes doesn't blow. The sun goes down every night. Grid engineers solved this decades ago. Here is the data.">
-<meta property="og:title" content="Yes. We noticed.">
+<meta property="og:title" content="Yes, we noticed.">
 <meta property="og:description" content="The wind sometimes drops. The sun sets every night. Engineers worked this out about 30 years ago. Here is the live data.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -467,7 +467,7 @@
 
 <div class="hero wrap">
   <div class="hero-tag"><span class="dot"></span> When the wind doesn't blow. When the sun goes down.</div>
-  <h1>Yes.<br>We <span class="accent">noticed</span>.</h1>
+  <h1>Yes, we<br><span class="accent">noticed</span>.</h1>
   <a href="#live" class="hero-ticker">
     <span class="hero-ticker-label">Right now</span>
     <span class="hero-ticker-num"><span id="heroLowCarbon">—</span>%</span>
@@ -643,7 +643,7 @@
     <div class="share">
       <button class="share-btn primary" onclick="copyLink()" id="copyBtn">Copy link to share</button>
       <a class="share-btn" href="wall.html">See the Wall of Helpful Insights →</a>
-      <a class="share-btn" href="https://twitter.com/intent/tweet?text=Yes.%20We%20noticed.%20A%20live%2C%20sourced%20answer%20to%20the%20most%20tired%20argument%20in%20energy%20policy%3A&url=" id="tweetBtn" target="_blank" rel="noopener">Share on X</a>
+      <a class="share-btn" href="https://twitter.com/intent/tweet?text=Yes%2C%20we%20noticed.%20A%20live%2C%20sourced%20answer%20to%20the%20most%20tired%20argument%20in%20energy%20policy%3A&url=" id="tweetBtn" target="_blank" rel="noopener">Share on X</a>
       <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=" id="liBtn" target="_blank" rel="noopener">Share on LinkedIn</a>
     </div>
   </div>
@@ -770,7 +770,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     const url = encodeURIComponent(window.location.href);
-    document.getElementById('tweetBtn').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent("Yes. We noticed. A live, sourced answer to the most tired argument in energy policy:")}&url=${url}`;
+    document.getElementById('tweetBtn').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent("Yes, we noticed. A live, sourced answer to the most tired argument in energy policy:")}&url=${url}`;
     document.getElementById('liBtn').href = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
     loadLiveData();
     setInterval(loadLiveData, 5 * 60 * 1000);
