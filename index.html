@@ -85,6 +85,54 @@
     margin-bottom: 48px;
   }
   .hero-sub strong { color: var(--ink); font-weight: 500; }
+  .hero-ticker {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 22px;
+    background: rgba(212, 255, 58, 0.08);
+    border: 1px solid rgba(212, 255, 58, 0.3);
+    border-radius: 999px;
+    margin-bottom: 36px;
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 15px;
+    border-bottom: 1px solid rgba(212, 255, 58, 0.3);
+    transition: all 0.2s;
+    width: fit-content;
+    max-width: 100%;
+  }
+  .hero-ticker:hover {
+    background: rgba(212, 255, 58, 0.16);
+    border-color: var(--accent);
+    border-bottom-color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .hero-ticker-label {
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+  }
+  .hero-ticker-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--accent);
+  }
+  .hero-ticker-text {
+    color: var(--ink-dim);
+  }
+  .hero-ticker-arrow {
+    color: var(--accent);
+    font-weight: 600;
+    margin-left: 4px;
+  }
+  @media (max-width: 600px) {
+    .hero-ticker { font-size: 13px; padding: 10px 16px; gap: 10px; }
+    .hero-ticker-text { display: none; }
+  }
   .scroll-cue {
     font-size: 13px;
     color: var(--ink-dim);
@@ -418,8 +466,14 @@
 <body>
 
 <div class="hero wrap">
-  <div class="hero-tag"><span class="dot"></span> Live answer · Updated continuously</div>
+  <div class="hero-tag"><span class="dot"></span> When the wind doesn't blow. When the sun goes down.</div>
   <h1>Yes.<br>We <span class="accent">noticed</span>.</h1>
+  <a href="#live" class="hero-ticker">
+    <span class="hero-ticker-label">Right now</span>
+    <span class="hero-ticker-num"><span id="heroLowCarbon">—</span>%</span>
+    <span class="hero-ticker-text">of UK electricity is low-carbon</span>
+    <span class="hero-ticker-arrow">→</span>
+  </a>
   <p class="hero-sub">The wind sometimes drops. The sun sets every night. <strong>Grid engineers worked this out about thirty years ago.</strong> If you are about to share the discovery that renewables are intermittent, please scroll first.</p>
   <div class="scroll-cue">Read on</div>
 </div>
@@ -670,6 +724,8 @@
         .filter(m => LOW_CARBON.includes(m.fuel))
         .reduce((s, m) => s + m.perc, 0);
       document.getElementById('lowCarbonPct').textContent = lowCarbon.toFixed(1);
+      const heroEl = document.getElementById('heroLowCarbon');
+      if (heroEl) heroEl.textContent = lowCarbon.toFixed(1);
 
       const sorted = [...mix].sort((a,b) => b.perc - a.perc).filter(m => m.perc > 0);
 
