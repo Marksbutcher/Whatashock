@@ -138,9 +138,21 @@
     color: var(--ink-dim);
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 12px;
+    width: fit-content;
+    text-decoration: none;
+    border-bottom: none;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .scroll-cue:hover {
+    color: var(--accent);
+    border-bottom: none;
+  }
+  .scroll-cue:hover::after {
+    background: var(--accent);
   }
   .scroll-cue::after {
     content: '';
@@ -475,7 +487,7 @@
     <span class="hero-ticker-arrow">→</span>
   </a>
   <p class="hero-sub">The wind sometimes drops. The sun sets every night. <strong>Grid engineers worked this out about thirty years ago.</strong> If you are about to share the discovery that renewables are intermittent, please scroll first.</p>
-  <div class="scroll-cue">Read on</div>
+  <a href="#live" class="scroll-cue">Read on</a>
 </div>
 
 <section id="live">
