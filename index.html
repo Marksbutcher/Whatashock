@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yes. We noticed. — The wind drops. The sun sets. Engineers worked this out.</title>
+<meta name="description" content="A live answer to the most tired argument in energy policy. The wind sometimes doesn't blow. The sun goes down every night. Grid engineers solved this decades ago. Here is the data.">
+<meta property="og:title" content="Yes. We noticed.">
+<meta property="og:description" content="The wind sometimes drops. The sun sets every night. Engineers worked this out about 30 years ago. Here is the live data.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-2: #131313;
+    --ink: #f5f5f0;
+    --ink-dim: #9a9a92;
+    --accent: #d4ff3a;
+    --accent-2: #ff5a1f;
+    --line: #262624;
+    --good: #4ade80;
+    --warn: #fbbf24;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+  a:hover { border-bottom-color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0 40px;
+    position: relative;
+  }
+  .hero-tag {
+    font-size: 14px;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-tag .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .hero h1 {
+    font-size: clamp(56px, 12vw, 180px);
+    font-weight: 700;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    margin-bottom: 32px;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(18px, 2.4vw, 28px);
+    color: var(--ink-dim);
+    max-width: 780px;
+    line-height: 1.4;
+    margin-bottom: 48px;
+  }
+  .hero-sub strong { color: var(--ink); font-weight: 500; }
+  .scroll-cue {
+    font-size: 13px;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .scroll-cue::after {
+    content: '';
+    display: inline-block;
+    width: 60px;
+    height: 1px;
+    background: var(--ink-dim);
+    animation: slide 1.6s infinite;
+  }
+  @keyframes slide {
+    0% { transform: translateX(0); opacity: 0.3; }
+    50% { transform: translateX(20px); opacity: 1; }
+    100% { transform: translateX(0); opacity: 0.3; }
+  }
+
+  /* SECTION SHELL */
+  section { padding: 120px 0; border-top: 1px solid var(--line); }
+  .eyebrow {
+    font-size: 13px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  h2 {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+    max-width: 900px;
+  }
+  h2 .accent { color: var(--accent); }
+  .lede {
+    font-size: clamp(18px, 2vw, 22px);
+    color: var(--ink-dim);
+    max-width: 720px;
+    margin-bottom: 64px;
+    line-height: 1.5;
+  }
+
+  /* LIVE PANEL */
+  .live-panel {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 48px;
+    margin-bottom: 32px;
+  }
+  .live-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .live-label {
+    font-size: 14px;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--good);
+    box-shadow: 0 0 8px var(--good);
+    animation: pulse 1.6s infinite;
+  }
+  .live-time { font-size: 13px; color: var(--ink-dim); }
+  .big-number {
+    font-size: clamp(64px, 14vw, 200px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .big-number .unit { font-size: 0.4em; color: var(--ink); margin-left: 0.1em; }
+  .big-number-label {
+    font-size: clamp(18px, 2.2vw, 26px);
+    color: var(--ink);
+    margin-bottom: 40px;
+    max-width: 700px;
+    line-height: 1.4;
+  }
+  .mix-bar {
+    display: flex;
+    height: 56px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .mix-segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-weight: 600;
+    font-size: 13px;
+    min-width: 0;
+    overflow: hidden;
+    transition: opacity 0.2s;
+  }
+  .mix-segment:hover { opacity: 0.85; }
+  .mix-legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+  }
+  .mix-item { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+  .mix-swatch { width: 14px; height: 14px; border-radius: 2px; flex-shrink: 0; }
+  .live-caption {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+    color: var(--ink-dim);
+  }
+
+  /* RECORDS */
+  .records {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .record {
+    padding: 36px 32px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-2);
+    transition: background 0.2s;
+  }
+  .record:hover { background: #1a1a18; }
+  .record .country {
+    font-size: 13px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .record .stat {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .record .desc { font-size: 16px; color: var(--ink); line-height: 1.4; margin-bottom: 12px; }
+  .record .source { font-size: 12px; color: var(--ink-dim); }
+
+  /* HOW */
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+  }
+  .how-card {
+    border-left: 3px solid var(--accent);
+    padding: 8px 0 8px 28px;
+  }
+  .how-card .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+  .how-card h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .how-card p { color: var(--ink-dim); font-size: 16px; line-height: 1.55; }
+
+  /* HARD */
+  .hard {
+    background: var(--bg-2);
+    margin: 0 -24px;
+    padding: 120px 24px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .hard .wrap > .lede { color: var(--ink); }
+  .hard-list {
+    display: grid;
+    gap: 24px;
+    max-width: 800px;
+  }
+  .hard-item {
+    padding: 28px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+  }
+  .hard-item h4 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--warn);
+  }
+  .hard-item p { color: var(--ink-dim); font-size: 16px; line-height: 1.5; }
+
+  /* CLOSER */
+  .closer { padding: 160px 0; }
+  .closer h2 {
+    font-size: clamp(40px, 7vw, 96px);
+    margin-bottom: 48px;
+  }
+  .closer p {
+    font-size: clamp(20px, 2.4vw, 28px);
+    color: var(--ink-dim);
+    max-width: 820px;
+    margin-bottom: 28px;
+    line-height: 1.45;
+  }
+  .closer p strong { color: var(--ink); font-weight: 500; }
+
+  /* SHARE */
+  .share {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 48px;
+  }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    border-bottom: 1px solid var(--line);
+  }
+  .share-btn:hover {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+  .share-btn.primary {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+  .share-btn.primary:hover { background: #b8e62e; border-color: #b8e62e; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 64px 0 48px;
+    margin-top: 80px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  .footer-grid h5 {
+    font-size: 13px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .footer-grid ul { list-style: none; }
+  .footer-grid li { margin-bottom: 8px; font-size: 14px; }
+  .footer-grid li a { color: var(--ink-dim); border: none; }
+  .footer-grid li a:hover { color: var(--accent); }
+  .footer-meta {
+    color: var(--ink-dim);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .footer-bottom {
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    color: var(--ink-dim);
+    font-size: 13px;
+  }
+
+  @media (max-width: 720px) {
+    section { padding: 80px 0; }
+    .live-panel { padding: 28px 20px; }
+    .record { padding: 28px 24px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .hard { padding: 80px 24px; }
+  }
+
+  .err {
+    color: var(--accent-2);
+    font-size: 14px;
+    padding: 12px 16px;
+    background: rgba(255,90,31,0.1);
+    border-radius: 4px;
+    margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero wrap">
+  <div class="hero-tag"><span class="dot"></span> Live answer · Updated continuously</div>
+  <h1>Yes.<br>We <span class="accent">noticed</span>.</h1>
+  <p class="hero-sub">The wind sometimes drops. The sun sets every night. <strong>Grid engineers worked this out about thirty years ago.</strong> If you are about to share the discovery that renewables are intermittent, please scroll first.</p>
+  <div class="scroll-cue">Read on</div>
+</div>
+
+<section id="live">
+  <div class="wrap">
+    <div class="eyebrow">Live · National Grid ESO · Britain</div>
+    <h2>Right now, on a real grid, in real time.</h2>
+    <p class="lede">This is the actual generation mix on the British electricity grid in this moment. No model, no projection, no marketing — a public API anyone can query. Refresh the page in 30 minutes and the numbers will change. The grid will still be running.</p>
+
+    <div class="live-panel">
+      <div class="live-header">
+        <div class="live-label"><span class="live-dot"></span> Live · GB grid</div>
+        <div class="live-time mono" id="liveTime">Loading…</div>
+      </div>
+
+      <div class="big-number"><span id="lowCarbonPct">—</span><span class="unit">%</span></div>
+      <div class="big-number-label">of Britain's electricity right now is from <strong>low-carbon sources</strong> (wind, solar, nuclear, hydro, biomass).</div>
+
+      <div class="mix-bar" id="mixBar"></div>
+      <div class="mix-legend" id="mixLegend"></div>
+
+      <div class="live-caption">
+        Source: <a href="https://api.carbonintensity.org.uk/generation" target="_blank" rel="noopener">National Grid ESO Carbon Intensity API</a>. The API is free, public, and updated every half hour. You can verify these numbers yourself in a browser tab.
+        <div id="liveErr"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="records">
+  <div class="wrap">
+    <div class="eyebrow">Receipts</div>
+    <h2>While you were typing, <span class="accent">this happened</span>.</h2>
+    <p class="lede">Things that actually occurred on real grids serving real economies. None required the laws of physics to be repealed. All are looked up in seconds by anyone who can be bothered.</p>
+
+    <div class="records">
+      <div class="record">
+        <div class="country">🇵🇹 Portugal</div>
+        <div class="stat">6 days</div>
+        <div class="desc">100% renewable supply, continuous, including overnight. The lights stayed on. Nobody noticed.</div>
+        <div class="source">REN · October 2024</div>
+      </div>
+      <div class="record">
+        <div class="country">🇦🇺 South Australia</div>
+        <div class="stat">100%</div>
+        <div class="desc">renewables most days, for hours on end, while exporting the surplus. The grid that was supposed to collapse keeps not collapsing.</div>
+        <div class="source">AEMO · ongoing</div>
+      </div>
+      <div class="record">
+        <div class="country">🇬🇧 United Kingdom</div>
+        <div class="stat">0 g</div>
+        <div class="desc">of coal burned for power. The country that invented coal generation finished with it first. The lights are still on.</div>
+        <div class="source">National Grid ESO · since Sept 2024</div>
+      </div>
+      <div class="record">
+        <div class="country">🇪🇸 Spain</div>
+        <div class="stat">100%</div>
+        <div class="desc">instantaneous renewables across the entire peninsular grid. First time in April 2024. Won't be the last.</div>
+        <div class="source">Red Eléctrica de España</div>
+      </div>
+      <div class="record">
+        <div class="country">🇩🇰 Denmark</div>
+        <div class="stat">&gt;100%</div>
+        <div class="desc">of national demand met by wind alone, on 70+ days a year. The surplus gets sold to the neighbours. They take it.</div>
+        <div class="source">Energinet · multi-year</div>
+      </div>
+      <div class="record">
+        <div class="country">🇨🇳 China</div>
+        <div class="stat">+217 GW</div>
+        <div class="desc">of solar in one year. More than the entire installed base of any other country on Earth. Built by people who have read a balance sheet.</div>
+        <div class="source">National Energy Administration · 2023</div>
+      </div>
+      <div class="record">
+        <div class="country">🇺🇸 California</div>
+        <div class="stat">100%+</div>
+        <div class="desc">renewables for parts of the day on 50+ days in 2024. Batteries shifted the surplus into the evening peak. The duck curve got solved while you weren't looking.</div>
+        <div class="source">CAISO</div>
+      </div>
+      <div class="record">
+        <div class="country">🌍 Global</div>
+        <div class="stat">~155 GW</div>
+        <div class="desc">of new battery storage installed in 2024 alone. The "you can't store electricity" line is from a different decade. So is your argument.</div>
+        <div class="source">IEA · BloombergNEF</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="eyebrow">How real grids actually do this</div>
+    <h2>A grid is not a single solar panel attached to a single household. <span class="accent">It is a system.</span></h2>
+    <p class="lede">Every objection to renewables that begins with "but what if it's not sunny here right now" is, structurally, a misunderstanding of what a grid is. Here is what actually keeps the lights on.</p>
+
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="num">01 / GEOGRAPHY</div>
+        <h3>The wind is always blowing somewhere.</h3>
+        <p>A grid spans hundreds or thousands of kilometres. Wind correlations break down beyond a few hundred kilometres. Build wind in enough places and the aggregate output is far smoother than any single farm.</p>
+      </div>
+      <div class="how-card">
+        <div class="num">02 / DIVERSITY</div>
+        <h3>Wind and solar fail at different times.</h3>
+        <p>Solar peaks in summer days. Wind peaks in winter and at night. They are negatively correlated on most timescales. A mixed portfolio reduces variability long before storage is involved.</p>
+      </div>
+      <div class="how-card">
+        <div class="num">03 / STORAGE</div>
+        <h3>Batteries are now cheaper than gas peakers.</h3>
+        <p>Lithium-ion storage costs fell about 90% in the last decade. In most US, UK, Australian and European markets, battery storage now wins capacity auctions against new gas turbines on cost alone.</p>
+      </div>
+      <div class="how-card">
+        <div class="num">04 / DEMAND</div>
+        <h3>Demand is no longer fixed.</h3>
+        <p>EVs, heat pumps, industrial loads and data centres can shift by hours without anyone noticing. Modern grids ask demand to follow generation, not the other way round. This is called demand-side response and it already exists.</p>
+      </div>
+      <div class="how-card">
+        <div class="num">05 / INTERCONNECTION</div>
+        <h3>Countries trade electricity constantly.</h3>
+        <p>Britain imports French nuclear, exports North Sea wind, balances with Norwegian hydro. Europe runs as a near-continental grid. The "nation alone in the dark" scenario is not how power systems are operated.</p>
+      </div>
+      <div class="how-card">
+        <div class="num">06 / FIRM CAPACITY</div>
+        <h3>Hydro, nuclear and biomass still exist.</h3>
+        <p>Nobody serious is proposing 100% wind and solar with nothing else. Pumped hydro has been doing energy storage for a century. Nuclear and reservoir hydro provide firm capacity. The mix is the answer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hard">
+  <div class="wrap">
+    <div class="eyebrow">Credit where it is due</div>
+    <h2>There <span class="accent">is</span> a real version of this question.</h2>
+    <p class="lede">It is not the version being shouted. The serious version is narrow, specific, and being worked on hard by people who know what they are doing. If you want to argue against renewables in good faith, argue here:</p>
+
+    <div class="hard-list">
+      <div class="hard-item">
+        <h4>Dunkelflaute</h4>
+        <p>Multi-day still, dark periods in northern European winters. Real, recurring, and the hardest part of a high-renewables grid. Solutions in deployment: long-duration storage, green hydrogen, expanded interconnection, retained nuclear, demand-side flexibility. Not unsolved — sequenced.</p>
+      </div>
+      <div class="hard-item">
+        <h4>Seasonal storage</h4>
+        <p>Shifting summer surplus into winter demand at gigawatt-week scale. Lithium batteries don't do this. Pumped hydro, compressed air, hydrogen and thermal storage do. Cost and siting are the question, not feasibility.</p>
+      </div>
+      <div class="hard-item">
+        <h4>Grid inertia and stability</h4>
+        <p>Synchronous generators (gas, coal, hydro, nuclear) provide rotational inertia that stabilises grid frequency. Inverter-based renewables don't, by default. Synthetic inertia, grid-forming inverters and synchronous condensers solve it. Britain, Australia and Texas are already doing this at scale.</p>
+      </div>
+      <div class="hard-item">
+        <h4>Transmission build-out</h4>
+        <p>The biggest constraint on renewables in most countries is not the technology, the storage or the cost. It is permission to build pylons. This is a politics problem, not an engineering one.</p>
+      </div>
+    </div>
+    <p class="lede" style="margin-top: 48px; max-width: 820px;">These are real, hard, interesting problems. None of them are reasons to keep burning gas. They are reasons to invest in the next layer of the system. Grid engineers know this. They are not panicking. Neither should you.</p>
+  </div>
+</div>
+
+<section class="closer">
+  <div class="wrap">
+    <div class="eyebrow">In closing</div>
+    <h2>If your argument against renewables is <span class="accent">"sometimes the wind doesn't blow"</span>, you are not making an argument against renewables.</h2>
+    <p>You are announcing that you have not read anything written about energy systems since approximately 1995.</p>
+    <p>That is fine. It is a big subject. <strong>Most of us start there.</strong> But once you've noticed that the engineers who run the grid every day are not lying awake worrying about the sun setting, the honest move is to update.</p>
+    <p>The next time you hear a politician, a columnist or a man on the internet announce this discovery, ask them a single question: <strong>which grid operator agrees with you?</strong></p>
+
+    <div class="share">
+      <button class="share-btn primary" onclick="copyLink()" id="copyBtn">Copy link to share</button>
+      <a class="share-btn" href="wall.html">See the Wall of Helpful Insights →</a>
+      <a class="share-btn" href="https://twitter.com/intent/tweet?text=Yes.%20We%20noticed.%20A%20live%2C%20sourced%20answer%20to%20the%20most%20tired%20argument%20in%20energy%20policy%3A&url=" id="tweetBtn" target="_blank" rel="noopener">Share on X</a>
+      <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=" id="liBtn" target="_blank" rel="noopener">Share on LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h5>About this page</h5>
+        <p class="footer-meta">A standing answer to a recurring argument. Built because explaining grid balancing in 280 characters, every time, is an inefficient use of human attention. Free to link, free to share, free to fork.</p>
+        <p class="footer-meta" style="margin-top: 16px;">Live data is the British grid because it is the only major grid with a free, public, no-key API. Records are sourced from the operators listed beside each.</p>
+      </div>
+      <div>
+        <h5>Live data sources</h5>
+        <ul>
+          <li><a href="https://carbonintensity.org.uk" target="_blank" rel="noopener">National Grid ESO (UK)</a></li>
+          <li><a href="https://transparency.entsoe.eu" target="_blank" rel="noopener">ENTSO-E (Europe)</a></li>
+          <li><a href="https://aemo.com.au" target="_blank" rel="noopener">AEMO (Australia)</a></li>
+          <li><a href="https://www.eia.gov/opendata/" target="_blank" rel="noopener">EIA Open Data (US)</a></li>
+          <li><a href="https://app.electricitymaps.com" target="_blank" rel="noopener">Electricity Maps (global)</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Reference</h5>
+        <ul>
+          <li><a href="https://ember-energy.org" target="_blank" rel="noopener">Ember</a></li>
+          <li><a href="https://www.iea.org" target="_blank" rel="noopener">IEA</a></li>
+          <li><a href="https://www.irena.org" target="_blank" rel="noopener">IRENA</a></li>
+          <li><a href="https://about.bnef.com" target="_blank" rel="noopener">BloombergNEF</a></li>
+          <li><a href="https://ukcarbon.posetiv.co.uk" target="_blank" rel="noopener">UK Carbon (sister site)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>Built by <a href="https://posetiv.co.uk" target="_blank" rel="noopener">Posetiv</a>. No tracking. No ads. No nonsense.</div>
+      <div class="mono" id="footerStamp">—</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const FUEL_COLOURS = {
+    wind:    '#7dd3fc',
+    solar:   '#fde047',
+    nuclear: '#a78bfa',
+    hydro:   '#67e8f9',
+    biomass: '#86efac',
+    gas:     '#f87171',
+    coal:    '#525252',
+    imports: '#94a3b8',
+    other:   '#cbd5e1'
+  };
+  const FUEL_LABELS = {
+    wind:    'Wind',
+    solar:   'Solar',
+    nuclear: 'Nuclear',
+    hydro:   'Hydro',
+    biomass: 'Biomass',
+    gas:     'Gas',
+    coal:    'Coal',
+    imports: 'Imports',
+    other:   'Other'
+  };
+  const LOW_CARBON = ['wind','solar','nuclear','hydro','biomass'];
+
+  async function loadLiveData() {
+    const errEl = document.getElementById('liveErr');
+    try {
+      const res = await fetch('https://api.carbonintensity.org.uk/generation');
+      if (!res.ok) throw new Error('API ' + res.status);
+      const json = await res.json();
+      const mix = json.data.generationmix;
+      const from = new Date(json.data.from);
+      const to = new Date(json.data.to);
+
+      const lowCarbon = mix
+        .filter(m => LOW_CARBON.includes(m.fuel))
+        .reduce((s, m) => s + m.perc, 0);
+      document.getElementById('lowCarbonPct').textContent = lowCarbon.toFixed(1);
+
+      const sorted = [...mix].sort((a,b) => b.perc - a.perc).filter(m => m.perc > 0);
+
+      const bar = document.getElementById('mixBar');
+      bar.innerHTML = '';
+      sorted.forEach(m => {
+        const seg = document.createElement('div');
+        seg.className = 'mix-segment';
+        seg.style.flexBasis = m.perc + '%';
+        seg.style.background = FUEL_COLOURS[m.fuel] || '#888';
+        seg.title = `${FUEL_LABELS[m.fuel]}: ${m.perc.toFixed(1)}%`;
+        if (m.perc >= 6) seg.textContent = m.perc.toFixed(0) + '%';
+        bar.appendChild(seg);
+      });
+
+      const legend = document.getElementById('mixLegend');
+      legend.innerHTML = '';
+      sorted.forEach(m => {
+        const item = document.createElement('div');
+        item.className = 'mix-item';
+        item.innerHTML = `<span class="mix-swatch" style="background:${FUEL_COLOURS[m.fuel]}"></span><span>${FUEL_LABELS[m.fuel]} <strong>${m.perc.toFixed(1)}%</strong></span>`;
+        legend.appendChild(item);
+      });
+
+      const fmt = d => d.toLocaleString('en-GB', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: 'short', timeZone: 'Europe/London' });
+      document.getElementById('liveTime').textContent = `${fmt(from)} — ${fmt(to)} UK`;
+      document.getElementById('footerStamp').textContent = 'Last data: ' + fmt(to) + ' UK';
+      errEl.innerHTML = '';
+    } catch (e) {
+      errEl.innerHTML = '<div class="err">Could not reach the live grid API right now (' + e.message + '). The point still stands. Try refreshing.</div>';
+      document.getElementById('lowCarbonPct').textContent = '—';
+    }
+  }
+
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    const btn = document.getElementById('copyBtn');
+    const old = btn.textContent;
+    btn.textContent = 'Copied — go forth';
+    setTimeout(() => btn.textContent = old, 2000);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const url = encodeURIComponent(window.location.href);
+    document.getElementById('tweetBtn').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent("Yes. We noticed. A live, sourced answer to the most tired argument in energy policy:")}&url=${url}`;
+    document.getElementById('liBtn').href = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+    loadLiveData();
+    setInterval(loadLiveData, 5 * 60 * 1000);
+  });
+</script>
+
+</body>
+</html>

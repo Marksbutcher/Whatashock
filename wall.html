@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wall of Helpful Insights — Yes. We noticed.</title>
+<meta name="description" content="A curated wall of the most generous contributions to the renewables debate. Not real people. Real arguments. Each one debunked in a single line.">
+<meta property="og:title" content="The Wall of Helpful Insights">
+<meta property="og:description" content="The most generous contributions to the renewables debate, lovingly preserved and answered in one line each.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-2: #131313;
+    --bg-3: #1a1a18;
+    --ink: #f5f5f0;
+    --ink-dim: #9a9a92;
+    --ink-faint: #6b6b66;
+    --accent: #d4ff3a;
+    --accent-2: #ff5a1f;
+    --line: #262624;
+    --linkedin-blue: #0a66c2;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+  a:hover { border-bottom-color: var(--accent); }
+
+  /* NAV */
+  .topnav {
+    border-bottom: 1px solid var(--line);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+  }
+  .topnav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+  }
+  .logo .accent { color: var(--accent); }
+  .topnav a.back {
+    font-size: 14px;
+    color: var(--ink-dim);
+    border: none;
+  }
+  .topnav a.back:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    padding: 100px 0 60px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-tag {
+    font-size: 13px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+  h1 {
+    font-size: clamp(48px, 9vw, 120px);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 32px;
+  }
+  h1 .accent { color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(17px, 2.1vw, 24px);
+    color: var(--ink-dim);
+    max-width: 780px;
+    line-height: 1.45;
+    margin-bottom: 16px;
+  }
+  .hero-sub strong { color: var(--ink); font-weight: 500; }
+  .hero-disclaimer {
+    margin-top: 24px;
+    padding: 16px 20px;
+    background: var(--bg-2);
+    border-left: 3px solid var(--accent-2);
+    border-radius: 0 4px 4px 0;
+    font-size: 14px;
+    color: var(--ink-dim);
+    max-width: 780px;
+  }
+  .hero-disclaimer strong { color: var(--ink); }
+
+  /* WALL */
+  .wall {
+    padding: 80px 0 120px;
+  }
+  .wall-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 24px;
+  }
+
+  /* POST CARD — looks like a LinkedIn post */
+  .post {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .post:hover {
+    transform: translateY(-2px);
+    border-color: #3a3a36;
+  }
+  .post-header {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 18px 20px 12px;
+  }
+  .avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3a3a36, #1a1a18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-dim);
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+    border: 1px solid var(--line);
+  }
+  .meta { flex: 1; min-width: 0; }
+  .meta .name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .meta .title {
+    font-size: 12px;
+    color: var(--ink-dim);
+    line-height: 1.35;
+  }
+  .meta .timestamp {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 4px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .post-body {
+    padding: 6px 20px 20px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink);
+    flex: 1;
+  }
+  .post-body em { color: var(--ink-dim); font-style: normal; opacity: 0.7; }
+
+  .post-engagement {
+    padding: 10px 20px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+  .post-engagement span { display: flex; align-items: center; gap: 4px; }
+
+  .response {
+    background: var(--bg);
+    padding: 16px 20px;
+    border-top: 2px solid var(--accent);
+  }
+  .response-label {
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .response-text {
+    font-size: 15px;
+    line-height: 1.45;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .response-text .accent { color: var(--accent); }
+
+  /* FOOTER */
+  .submit {
+    margin-top: 80px;
+    padding: 48px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    text-align: center;
+  }
+  .submit h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .submit p {
+    color: var(--ink-dim);
+    max-width: 600px;
+    margin: 0 auto 28px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: var(--accent);
+    color: #000;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn:hover {
+    background: #b8e62e;
+    border-color: #b8e62e;
+    border-bottom-color: #b8e62e;
+  }
+  .btn.ghost {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--line);
+  }
+  .btn.ghost:hover {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+  .submit .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 48px 0 32px;
+    margin-top: 80px;
+    color: var(--ink-dim);
+    font-size: 14px;
+  }
+  .footer-row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  @media (max-width: 720px) {
+    .hero { padding: 60px 0 40px; }
+    .submit { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap topnav-inner">
+    <div class="logo">Yes. We <span class="accent">noticed</span>.</div>
+    <a class="back" href="index.html">← Back to the data</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-tag">Hall of Helpful Insights · Curated</div>
+    <h1>The most <span class="accent">generous</span> contributions to the renewables debate.</h1>
+    <p class="hero-sub">A wall of the kindly gentlemen who keep arriving in our timelines to explain, with great patience, that the wind sometimes drops. <strong>Each one preserved here, with thanks, alongside the answer.</strong></p>
+    <div class="hero-disclaimer">
+      <strong>Not real people.</strong> Composite archetypes drawn from arguments said in public approximately a thousand times this week. Resemblance to any specific commenter is statistical, not personal. Every one of these arguments has been answered in the engineering literature for at least twenty years.
+    </div>
+  </div>
+</header>
+
+<section class="wall">
+  <div class="wrap">
+    <div class="wall-grid">
+
+      <article class="post">
+        <div class="post-header">
+          <div class="avatar">RP</div>
+          <div class="meta">
+            <div class="name">The Retired Petrochemicals Director</div>
+            <div class="title">Former VP at a refinery you've heard of · Open to consulting</div>
+            <div class="timestamp">posted 3h ago</div>
+          </div>
+        </div>
+        <div class="post-body">
+          "Just back from another energy conference. Nobody mentioned what happens when the wind doesn't blow. We cannot run a modern economy on the weather. Apparently I'm the only adult in the room. <em>#energytransition #realtalk</em>"
+        </div>
+        <div class="post-engagement">
+          <span>👍 412</span><span>💬 89</span><span>🔁 14</span>
+        </div>
+        <div class="response">
+          <div class="response-label">Reply</div>
+          <div class="response-text">Every grid operator has been balancing weather-dependent output for <span class="accent">a hundred years</span>. Hydro is weather. Demand is weather. You are not the only adult in the room.</div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-header">
+          <div class="avatar">SC</div>
+          <div class="meta">
+            <div class="name">The Substack Contrarian</div>
+            <div class="title">Independent thinker · Just asks questions · 47k subscribers</div>
+            <div class="timestamp">posted 1d ago</div>
+          </div>
+        </div>
+        <div class="post-body">
+          "Hot take: renewables are uneconomic without subsidies. Why doesn't anyone talk about this? Because the truth is uncomfortable. <em>(Thread, 1/47)</em>"
+        </div>
+        <div class="post-engagement">
+          <span>👍 2.1k</span><span>💬 304</span><span>🔁 188</span>
+        </div>
+        <div class="response">
+          <div class="response-label">Reply</div>
+          <div class="response-text">Offshore wind cleared <span class="accent">below new gas</span> in 2024 auctions. Onshore solar is the cheapest electricity in human history. The thread can end here.</div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-header">
+          <div class="avatar">MP</div>
+          <div class="meta">
+            <div class="name">The Backbench MP</div>
+            <div class="title">Ten-minute rule bill enthusiast · Speaks for the silent majority</div>
+            <div class="timestamp">posted 6h ago</div>
+          </div>
+        </div>
+        <div class="post-body">
+          "I asked the Minister yesterday. WHAT happens when the wind doesn't blow? She had no answer. The country deserves better."
+        </div>
+        <div class="post-engagement">
+          <span>👍 891</span><span>💬 156</span><span>🔁 41</span>
+        </div>
+        <div class="response">
+          <div class="response-label">Reply</div>
+          <div class="response-text">The country deserves an MP who has read <span class="accent">the National Grid ESO website</span>. It is free and public.</div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-header">
+          <div class="avatar">DT</div>
+          <div class="meta">
+            <div class="name">The Letters Page Regular</div>
+            <div class="title">Disgusted of Tunbridge Wells · Concerned ratepayer</div>
+            <div class="timestamp">posted yesterday</div>
+          </div>
+        </div>
+        <div class="post-body">
+          "Sir — I notice my solar panels do not produce electricity at night. I trust the engineers responsible for the so-called energy transition will explain themselves to the licence-fee payer."
+        </div>
+        <div class="post-engagement">
+          <span>👍 67</span><span>💬 12</span><span>🔁 3</span>
+        </div>
+        <div class="response">
+          <div class="response-label">Reply</div>
+          <div class="response-text">The engineers responsible noticed in <span class="accent">1987</span> and built batteries. The grid noticed in 1882 and built the grid.</div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-header">
+          <div class="avatar">JQ</div>
+          <div class="meta">
+            <div class="name">The "Just Asking Questions" Guy</div>
+            <div class="title">I'm pro-environment but pro-realism · Centrist · Father</div>
+            <div class="timestamp">posted 2h ago</div>
+          </div>
+        </div>
+        <div class="post-body">
+          "I'm not anti-renewables. I just have questions. Like: when the wind stops, where does the power come from? Why won't anyone answer this <em>simple</em> question?"
+        </div>
+        <div class="post-engagement">
+          <span>👍 538</span><span>💬 201</span><span>🔁 22</span>
+        </div>
+        <div class="response">
+          <div class="response-label">Reply</div>
+          <div class="response-text">We did. In <span class="accent">every textbook published since 1995</span>. You did not read them. That is not the same thing.</div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-header">
+          <div class="avatar">CE</div>
+          <div class="meta">
+            <div class="name">The Engineer Who Has Not Worked On A Grid</div>
+            <div class="title">Chartered Mechanical Engineer (retired) · System thinker</div>
+            <div class="timestamp">posted 4h ago</div>
+          </div>
+        </div>
+        <div class="post-body">
+          "As a chartered engineer, I find the renewables debate deeply unserious. The grid needs synchronous inertia. Without it, frequency collapses. Wind and solar provide neither. End of."
+        </div>
+        <div class="post-engagement">
+          <span>👍 1.2k</span><span>💬 178</span><span>🔁 96</span>
+        </div>
+        <div class="response">
+          <div class="response-label">Reply</div>
+          <div class="response-text">Grid-forming inverters and synchronous condensers solve this. Currently in service across Britain, Texas, South Australia and Hornsea. <span class="accent">End of.</span></div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-header">
+          <div class="avatar">HF</div>
+          <div class="meta">
+            <div class="name">The Hedge Fund Energy Analyst</div>
+            <div class="title">Vintage 2003 · Still trades on the same thesis</div>
+            <div class="timestamp">posted 1d ago</div>
+          </div>
+        </div>
+        <div class="post-body">
+          "The intermittency cost of renewables is the dirty secret nobody on Wall Street will discuss. Once you account for backup capacity, the numbers look very different."
+        </div>
+        <div class="post-engagement">
+          <span>👍 312</span><span>💬 78</span><span>🔁 15</span>
+        </div>
+        <div class="response">
+          <div class="response-label">Reply</div>
+          <div class="response-text">Wall Street is in fact discussing it. They keep <span class="accent">deciding to build more renewables</span>. Maybe ask why.</div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-header">
+          <div class="avatar">TR</div>
+          <div class="meta">
+            <div class="name">The Talk Radio Host</div>
+            <div class="title">Drive-time presenter · Father · Plain-speaking</div>
+            <div class="timestamp">posted 8h ago</div>
+          </div>
+        </div>
+        <div class="post-body">
+          "What are these so-called green geniuses going to do when there's a still, dark week in February? Burn windmills for warmth? You couldn't make it up."
+        </div>
+        <div class="post-engagement">
+          <span>👍 4.8k</span><span>💬 612</span><span>🔁 901</span>
+        </div>
+        <div class="response">
+          <div class="response-label">Reply</div>
+          <div class="response-text">Long-duration storage. Interconnection. Demand response. Retained nuclear. Green hydrogen. We did make it up. <span class="accent">About thirty years ago.</span></div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-header">
+          <div class="avatar">WA</div>
+          <div class="meta">
+            <div class="name">The Forwarded WhatsApp Uncle</div>
+            <div class="title">Sender of graphs · Recipient of graphs</div>
+            <div class="timestamp">posted 2h ago</div>
+          </div>
+        </div>
+        <div class="post-body">
+          "My friend who works in oil sent me this graph. Solar produces NOTHING at night. NOTHING. Why is no-one talking about this???"
+        </div>
+        <div class="post-engagement">
+          <span>👍 24</span><span>💬 7</span><span>🔁 31</span>
+        </div>
+        <div class="response">
+          <div class="response-label">Reply</div>
+          <div class="response-text">Your friend who works in oil knows the answer. <span class="accent">Ask them about batteries.</span> Then ask them why they didn't mention them.</div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-header">
+          <div class="avatar">CS</div>
+          <div class="meta">
+            <div class="name">The C-Suite LinkedIn Influencer</div>
+            <div class="title">Global Head of Strategy · Author · Speaker · Curious mind</div>
+            <div class="timestamp">posted 5h ago</div>
+          </div>
+        </div>
+        <div class="post-body">
+          "Hot take 🔥: the renewables crowd needs to grow up and accept that fossil fuels will be with us for decades. Anything less is wishful thinking. Agree?"
+        </div>
+        <div class="post-engagement">
+          <span>👍 3.4k</span><span>💬 488</span><span>🔁 256</span>
+        </div>
+        <div class="response">
+          <div class="response-label">Reply</div>
+          <div class="response-text">The IEA, BP and Shell now publish forecasts in which fossil demand <span class="accent">peaks this decade</span>. The grown-ups already moved. Agree?</div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-header">
+          <div class="avatar">RE</div>
+          <div class="meta">
+            <div class="name">The Rare Earths Whisperer</div>
+            <div class="title">Has discovered that mining exists · Concerned for the children</div>
+            <div class="timestamp">posted 3h ago</div>
+          </div>
+        </div>
+        <div class="post-body">
+          "Nobody wants to talk about the dirty truth: wind turbines and EVs need rare earths mined by children in Africa. Renewables are not 'green'."
+        </div>
+        <div class="post-engagement">
+          <span>👍 1.9k</span><span>💬 237</span><span>🔁 142</span>
+        </div>
+        <div class="response">
+          <div class="response-label">Reply</div>
+          <div class="response-text">Cobalt is not a rare earth. Wind turbines do not need it. The fossil fuel industry mines, drills and spills <span class="accent">thousands of times more material</span> per unit of energy delivered. Try again.</div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-header">
+          <div class="avatar">CN</div>
+          <div class="meta">
+            <div class="name">The China Whataboutist</div>
+            <div class="title">Energy realist · Concerned about global emissions</div>
+            <div class="timestamp">posted 1d ago</div>
+          </div>
+        </div>
+        <div class="post-body">
+          "Why should we bother with renewables when China is opening a new coal plant every week? It's a drop in the ocean."
+        </div>
+        <div class="post-engagement">
+          <span>👍 5.2k</span><span>💬 821</span><span>🔁 612</span>
+        </div>
+        <div class="response">
+          <div class="response-label">Reply</div>
+          <div class="response-text">China installed <span class="accent">more renewables in 2023 than the rest of the world combined</span>. They are also building the coal. They will use the renewables. We could too.</div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="submit">
+      <h2>Spotted a fresh one?</h2>
+      <p>Send us the screenshot. Composite archetypes only — we don't name and shame real people. The argument is the meme, not the man.</p>
+      <div class="actions">
+        <a class="btn" href="mailto:hello@posetiv.co.uk?subject=Wall%20of%20Helpful%20Insights%20%E2%80%94%20fresh%20candidate">Send a candidate</a>
+        <a class="btn ghost" href="index.html">Back to the data</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>Built by <a href="https://posetiv.co.uk" target="_blank" rel="noopener">Posetiv</a>. No tracking. No ads. No nonsense.</div>
+    <div class="mono">Updated when the next post arrives, which will be soon.</div>
+  </div>
+</footer>
+
+</body>
+</html>
